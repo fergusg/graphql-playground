@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "sequelize": "registry:dt/sequelize#3.4.1+20160602143901"
+  }
+}
