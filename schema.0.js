@@ -89,18 +89,6 @@ const Query = new GraphQLObjectType({
         return {
             people: {
                 type: new GraphQLList(Person),
-                args: {
-                    id: {
-                        type: GraphQLInt
-                    },
-                    ids: {
-                        type: new GraphQLList(GraphQLInt)
-                    },
-                    email: {
-                        type: GraphQLString
-                    }
-
-                },
                 resolve(root, args) {
                     /****** */
                     return [];
@@ -108,11 +96,6 @@ const Query = new GraphQLObjectType({
             },
             posts: {
                 type: new GraphQLList(Post),
-                args: {
-                    id: {
-                        type: GraphQLInt
-                    }
-                },
                 resolve(root, where) {
                     /****** */
                     return [];
