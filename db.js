@@ -59,8 +59,8 @@ async function createPerson() {
     });
 }
 
-Conn.sync({ force: true }).then(() => {
-    _.times(5, createPerson);
-});
+// Conn.sync({ force: true }).then(() => {
+//     _.times(5, createPerson);
+// });
 
 export default Conn;
