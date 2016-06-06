@@ -8,7 +8,7 @@ import {
     GraphQLNonNull
 } from 'graphql';
 
-import Db from "/db";
+import Db from "./db";
 
 const Post = new GraphQLObjectType({
     name: 'Post',
