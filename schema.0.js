@@ -36,7 +36,7 @@ const Post = new GraphQLObjectType({
             person: {
                 type: Person,
                 resolve(post) {
-                    /****** */
+                    // return post.getPerson();
                     {};
                 }
             }
@@ -76,7 +76,7 @@ const Person = new GraphQLObjectType({
             posts: {
                 type: new GraphQLList(Post),
                 resolve(person, args) {
-                    /****** */
+                    // return person.getPosts();
                     return [];
                 }
             }
@@ -92,14 +92,14 @@ const Query = new GraphQLObjectType({
             people: {
                 type: new GraphQLList(Person),
                 resolve(root, args) {
-                    /****** */
+                    // return Db.models.person.findAll({ where: args});
                     return [];
                 }
             },
             posts: {
                 type: new GraphQLList(Post),
-                resolve(root, where) {
-                    /****** */
+                resolve(root, args) {
+                    // return Db.models.post.findAll({ where: args });
                     return [];
                 }
             }
