@@ -77,7 +77,6 @@ Suppose I want all posts
 
 One must always ask for something back
 
-
 ```
 {
      posts {
@@ -157,11 +156,35 @@ code that interprets those parameters as
 
 As I said above, `graphql` is completely datasource agnostic.
 
+
+## Coding
+
+
 Now we'll build this from the the ground up.   We'll not really
 as we've got limited time and I'm the world's worst live coder.  But
 I hope to give you a taste of how easy it is to build a rich
 query interface with relatively little effort.
 
-## Coding
+OK, let's get coding.
 
 *(change server.js to point to schema.0)*
+
+Here I'm using `node/express` but, as I said before, you can do
+this in `java`, `python`, etc.
+
+### db.js
+
+It's not worth dwelling too long here.  `sequelize` is a ORM similar to many others.
+
+Here we define a `sqlite` database with `post` and `person` tables.  `id` primary
+keys are created automatically...
+
+Here we add relationship constraints...  We'll see later that `sequelize`
+automagically creates methods like `person.getPosts()` from these.
+
+And finally we populate with some dummy data.
+
+## schema.0.js
+
+
+# Mutations
