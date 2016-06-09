@@ -172,6 +172,11 @@ OK, let's get coding.
 Here I'm using `node/express` but, as I said before, you can do
 this in `java`, `python`, etc.
 
+## schema.0.js
+
+
+## schema.1.js
+
 ### db.js
 
 It's not worth dwelling too long here.  `sequelize` is a ORM similar to many others.
@@ -184,7 +189,6 @@ automagically creates methods like `person.getPosts()` from these.
 
 And finally we populate with some dummy data.
 
-## schema.0.js
 
 
 # Mutations

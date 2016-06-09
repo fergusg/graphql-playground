@@ -10,8 +10,6 @@ import {
 
 import Db from './db';
 
-let auth = false;
-
 const Post = new GraphQLObjectType({
     name: 'Post',
     description: 'Blog post',
@@ -93,72 +91,25 @@ const Query = new GraphQLObjectType({
         return {
             people: {
                 type: new GraphQLList(Person),
-                args: {
-                    id: {
-                        type: GraphQLInt
-                    },
-                    ids: {
-                        type: new GraphQLList(GraphQLInt)
-                    },
-                    email: {
-                        type: GraphQLString
-                    }
-
-                },
                 resolve(root, args) {
                     /****** */
-                    return Db.models.person.findAll({ where: args});
+                    return Db.models.person.findAll();
                 }
             },
             posts: {
                 type: new GraphQLList(Post),
-                args: {
-                    id: {
-                        type: GraphQLInt
-                    }
-                },
-                resolve(root, where) {
+                resolve(root, args) {
                     /****** */
-                    return Db.models.post.findAll({ where});
+                    return Db.models.post.findAll();
                 }
             }
         };
     }
 });
 
-const Mutation = new GraphQLObjectType({
-    name: 'Mutations',
-    description: 'Functions to set stuff',
-    fields: () => {
-        return {
-            addPerson: {
-                type: Person,
-                args: {
-                    firstName: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    lastName: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    email: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    }
-                },
-                resolve(source, args) {
-                    return Db.models.person.create({
-                        firstName: args.firstName,
-                        lastName: args.lastName,
-                        email: args.email.toLowerCase()
-                    });
-                }
-            }
-        };
-    }
-});
 
 const Schema = new GraphQLSchema({
-    query: Query,
-    mutation: Mutation
+    query: Query
 });
 
 export default Schema;

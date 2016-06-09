@@ -10,6 +10,8 @@ import {
 
 import Db from './db';
 
+let auth = false;
+
 const Post = new GraphQLObjectType({
     name: 'Post',
     description: 'Blog post',
@@ -59,6 +61,7 @@ const Person = new GraphQLObjectType({
                 type: GraphQLString,
                 resolve(person) {
                     return person.firstName;
+                    // ***** return new Promise((resolve) => resolve(person.firstName))
                 }
             },
             lastName: {
@@ -75,17 +78,9 @@ const Person = new GraphQLObjectType({
             },
             posts: {
                 type: new GraphQLList(Post),
-                args: {
-                    limit: {
-                        type: GraphQLInt
-                    }
-                },
-
                 resolve(person, args) {
-                    let limit = args.limit || -1;
-
                     /****** */
-                    return person.getPosts({limit});
+                    return person.getPosts();
                 }
             }
         };
@@ -103,37 +98,14 @@ const Query = new GraphQLObjectType({
                     id: {
                         type: GraphQLInt
                     },
-                    ids: {
-                        type: new GraphQLList(GraphQLInt)
-                    },
                     email: {
                         type: GraphQLString
-                    },
-                    limit: {
-                        type: GraphQLInt
                     }
 
                 },
                 resolve(root, args) {
-                    if (args.ids) {
-                        if (args.id) {
-                            args.id = [...args.ids, args.id];
-                        } else {
-                            args.id = args.ids;
-                        }
-                        delete args.ids;
-                    }
-
-                    if (args.email) {
-                        args.email = {
-                            $like: `${args.email}`
-                        };
-                    }
-                    let limit = args.limit || -1;
-                    delete args.limit;
-
                     /****** */
-                    return Db.models.person.findAll({ where: args, limit });
+                    return Db.models.person.findAll({ where: args});
                 }
             },
             posts: {
@@ -141,16 +113,11 @@ const Query = new GraphQLObjectType({
                 args: {
                     id: {
                         type: GraphQLInt
-                    },
-                    limit: {
-                        type: GraphQLInt
                     }
                 },
                 resolve(root, where) {
-                    let limit = where.limit || -1;
-                    delete where.limit;
                     /****** */
-                    return Db.models.post.findAll({ where, limit });
+                    return Db.models.post.findAll({ where});
                 }
             }
         };
