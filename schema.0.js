@@ -15,7 +15,12 @@ const Post = new GraphQLObjectType({
     description: 'Blog post',
     fields: () => {
         return {
-            // ...
+            name: {
+                type: GraphQLString,
+                // resolve(obj) {
+                //     return obj.name.toUpperCase();
+                // }
+            }
         };
     }
 });
@@ -30,6 +35,9 @@ const Query = new GraphQLObjectType({
                 type: new GraphQLList(Post),
                 resolve() {
                     return [
+                        {
+                            name: "fred"
+                        }
                     ];
                 }
             }
