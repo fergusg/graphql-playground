@@ -16,22 +16,13 @@ const Post = new GraphQLObjectType({
     fields: () => {
         return {
             id: {
-                type: GraphQLInt,
-                resolve(post) {
-                    return post.id;
-                }
+                type: GraphQLInt
             },
             title: {
-                type: GraphQLString,
-                resolve(post) {
-                    return post.title;
-                }
+                type: GraphQLString
             },
             content: {
-                type: GraphQLString,
-                resolve(post) {
-                    return post.content;
-                }
+                type: GraphQLString
             },
             person: {
                 type: Person,
@@ -50,32 +41,26 @@ const Person = new GraphQLObjectType({
     fields: () => {
         return {
             id: {
-                type: GraphQLInt,
-                resolve(person) {
-                    return person.id;
-                }
+                type: GraphQLInt
             },
             firstName: {
-                type: GraphQLString,
-                resolve(person) {
-                    return person.firstName;
-                }
+                type: GraphQLString
             },
             lastName: {
+                type: GraphQLString
+            },
+            fullName: {
                 type: GraphQLString,
                 resolve(person) {
-                    return person.lastName;
+                    return `${person.firstName} ${person.lastName}`;
                 }
             },
             email: {
-                type: GraphQLString,
-                resolve(person) {
-                    return person.email;
-                }
+                type: GraphQLString
             },
             posts: {
                 type: new GraphQLList(Post),
-                resolve(person, args) {
+                resolve(person) {
                     /****** */
                     return person.getPosts();
                 }

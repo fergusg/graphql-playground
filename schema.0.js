@@ -28,7 +28,7 @@ const Query = new GraphQLObjectType({
         return {
             posts: {
                 type: new GraphQLList(Post),
-                resolve(root, args) {
+                resolve() {
                     return [
                     ];
                 }
