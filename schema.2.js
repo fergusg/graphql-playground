@@ -52,29 +52,22 @@ const Person = new GraphQLObjectType({
     fields: () => {
         return {
             id: {
-                type: GraphQLInt,
-                resolve(person) {
-                    return person.id;
-                }
+                type: GraphQLInt
             },
             firstName: {
                 type: GraphQLString,
                 resolve(person) {
-                    return person.firstName;
-                    // ***** return new Promise((resolve) => resolve(person.firstName))
+                    return person.first_name;
                 }
             },
             lastName: {
                 type: GraphQLString,
                 resolve(person) {
-                    return person.lastName;
+                    return person.last_name;
                 }
             },
             email: {
-                type: GraphQLString,
-                resolve(person) {
-                    return person.email;
-                }
+                type: GraphQLString
             },
             posts: {
                 type: new GraphQLList(Post),

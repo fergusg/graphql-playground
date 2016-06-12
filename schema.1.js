@@ -44,15 +44,22 @@ const Person = new GraphQLObjectType({
                 type: GraphQLInt
             },
             firstName: {
-                type: GraphQLString
+                type: GraphQLString,
+                resolve(person) {
+                    return person.first_name;
+                }
             },
             lastName: {
-                type: GraphQLString
+                type: GraphQLString,
+                resolve(person) {
+                    return person.last_name;
+                }
+
             },
             fullName: { /*****/
                 type: GraphQLString,
                 resolve(person) {
-                    return `${person.firstName} ${person.lastName}`;
+                    return `${person.first_name} ${person.last_name}`;
                 }
             },
             email: {

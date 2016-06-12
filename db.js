@@ -13,11 +13,11 @@ const Conn = new Sequelize(
 );
 
 const Person = Conn.define('person', {
-    firstName: {
+    first_name: {
         type: STRING,
         allowNull: false
     },
-    lastName: {
+    last_name: {
         type: STRING,
         allowNull: false
     },
@@ -46,8 +46,8 @@ Post.belongsTo(Person);
 
 async function createPerson() {
     let person = await Person.create({
-        firstName: Faker.name.firstName(),
-        lastName: Faker.name.lastName(),
+        first_name: Faker.name.firstName(),
+        last_name: Faker.name.lastName(),
         email: Faker.internet.email()
     });
 

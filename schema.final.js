@@ -58,13 +58,13 @@ const Person = new GraphQLObjectType({
             firstName: {
                 type: GraphQLString,
                 resolve(person) {
-                    return person.firstName;
+                    return person.first_name;
                 }
             },
             lastName: {
                 type: GraphQLString,
                 resolve(person) {
-                    return person.lastName;
+                    return person.last_name;
                 }
             },
             email: {
@@ -82,7 +82,7 @@ const Person = new GraphQLObjectType({
                 },
 
                 resolve(person, args) {
-                    let limit = args.limit || -1;
+                    let { limit = -1 } = args;
 
                     /****** */
                     return person.getPosts({limit});
@@ -147,7 +147,9 @@ const Query = new GraphQLObjectType({
                     }
                 },
                 resolve(root, where) {
-                    let limit = where.limit || -1;
+                    let { limit = -1 } = args;
+
+                    limit = where.limit || -1;
                     delete where.limit;
                     /****** */
                     return Db.models.post.findAll({ where, limit });
@@ -177,8 +179,8 @@ const Mutation = new GraphQLObjectType({
                 },
                 resolve(source, args) {
                     return Db.models.person.create({
-                        firstName: args.firstName,
-                        lastName: args.lastName,
+                        first_name: args.firstName,
+                        last_name: args.lastName,
                         email: args.email.toLowerCase()
                     });
                 }
