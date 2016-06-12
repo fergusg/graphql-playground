@@ -129,7 +129,7 @@ const Query = new GraphQLObjectType({
                             $like: `${args.email}`
                         };
                     }
-                    let limit = args.limit || -1;
+                    let { limit = -1 } = args;
                     delete args.limit;
 
                     /****** */
