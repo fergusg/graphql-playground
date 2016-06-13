@@ -34,7 +34,7 @@ a single page.
 Suppose we want a webpage with a list of posts, the author and
 "other posts by this author" links
 
-So maybe we have an APU like:
+So maybe we have an REST API like:
 
 1. `/posts` returning `title`, `content`, `person_id`
 1. `/person/n` returning author details

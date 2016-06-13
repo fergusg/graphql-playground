@@ -98,7 +98,7 @@ const Query = new GraphQLObjectType({
                 },
                 resolve(root, args) {
                     /****** */
-                    return Db.models.person.findAll({ where: args});
+                    return Db.models.person.findAll({ where: args });
                 }
             },
             posts: {
@@ -108,9 +108,9 @@ const Query = new GraphQLObjectType({
                         type: GraphQLInt
                     }
                 },
-                resolve(root, where) {
+                resolve(root, args) {
                     /****** */
-                    return Db.models.post.findAll({ where});
+                    return Db.models.post.findAll({ where: args });
                 }
             }
         };
@@ -137,8 +137,8 @@ const Mutation = new GraphQLObjectType({
                 },
                 resolve(source, args) {
                     return Db.models.person.create({
-                        firstName: args.firstName,
-                        lastName: args.lastName,
+                        first_name: args.firstName,
+                        last_name: args.lastName,
                         email: args.email.toLowerCase()
                     });
                 }

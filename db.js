@@ -53,7 +53,7 @@ async function createPerson() {
 
     _.times(_.random(1,8), (i) => {
         person.createPost({
-            title: `Post ${i+1} by ${person.firstName} ${person.lastName}`,
+            title: `Post ${i+1} by ${person.first_name} ${person.last_name}`,
             content: Faker.lorem.paragraphs(3)
         });
     });
