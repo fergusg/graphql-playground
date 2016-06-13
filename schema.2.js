@@ -137,8 +137,8 @@ const Mutation = new GraphQLObjectType({
                 },
                 resolve(source, args) {
                     return Db.models.person.create({
-                        firstName: args.firstName,
-                        lastName: args.lastName,
+                        first_name: args.firstName,
+                        last_name: args.lastName,
                         email: args.email.toLowerCase()
                     });
                 }
