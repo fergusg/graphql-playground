@@ -147,9 +147,7 @@ const Query = new GraphQLObjectType({
                     }
                 },
                 resolve(root, where) {
-                    let { limit = -1 } = args;
-
-                    limit = where.limit || -1;
+                    let { limit = -1 } = where;
                     delete where.limit;
                     /****** */
                     return Db.models.post.findAll({ where, limit });

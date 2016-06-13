@@ -99,7 +99,7 @@ Didn't we also want the authors other posts?
 
 ```
     posts {
-    id
+        id
     }
 ```
 
