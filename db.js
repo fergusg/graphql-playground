@@ -23,8 +23,9 @@ const Person = Conn.define('person', {
     },
     email: {
         type: STRING,
+        unique: true,
         validate: {
-            isEmail: true
+            isEmail: true,
         }
     }
 });
