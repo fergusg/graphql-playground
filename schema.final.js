@@ -146,11 +146,12 @@ const Query = new GraphQLObjectType({
                         type: GraphQLInt
                     }
                 },
-                resolve(root, where) {
-                    let { limit = -1 } = where;
-                    delete where.limit;
+                resolve(root, args) {
+                    let { limit = -1 } = args;
+
+                    delete args.limit;
                     /****** */
-                    return Db.models.post.findAll({ where, limit });
+                    return Db.models.post.findAll({ where: args, limit });
                 }
             }
         };
@@ -176,11 +177,22 @@ const Mutation = new GraphQLObjectType({
                     }
                 },
                 resolve(source, args) {
-                    return Db.models.person.create({
-                        first_name: args.firstName,
-                        last_name: args.lastName,
-                        email: args.email.toLowerCase()
+                    return new Promise((resolve, reject) => {
+                        Db.models.person.create({
+                            first_name: args.firstName,
+                            last_name: args.lastName,
+                            email: args.email.toLowerCase()
+                        })
+                        .then(resolve)
+                        .catch(e => {
+                            if (e.errors) {
+                                reject(e.errors.map(e => e.message).join(" "));
+                            } else {
+                                reject(e);
+                            }
+                        });
                     });
+
                 }
             }
         };

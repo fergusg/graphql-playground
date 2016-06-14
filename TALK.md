@@ -192,3 +192,11 @@ And finally we populate with some dummy data.
 
 
 # Mutations
+
+```
+mutation {
+  addPerson(firstName: "Fred", lastName: "Flintstone", email: "fred@flintstone.com") {
+    id
+  }
+}
+```
