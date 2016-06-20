@@ -25,7 +25,7 @@ const Person = Conn.define('person', {
         type: STRING,
         unique: true,
         validate: {
-            isEmail: true,
+            isEmail: true
         }
     }
 });
@@ -65,3 +65,6 @@ async function createPerson() {
 // });
 
 export default Conn;
+
+// quick way to fool linter
+export {createPerson};

@@ -1,14 +1,10 @@
 import {
     GraphQLObjectType,
     GraphQLString,
-    GraphQLInt,
-    GraphQLBoolean,
     GraphQLSchema,
-    GraphQLList,
-    GraphQLNonNull
+    GraphQLList
 } from 'graphql';
 
-import Db from "./db";
 
 const Post = new GraphQLObjectType({
     name: 'Post',
@@ -16,7 +12,7 @@ const Post = new GraphQLObjectType({
     fields: () => {
         return {
             name: {
-                type: GraphQLString,
+                type: GraphQLString
                 // resolve(obj) {
                 //     return obj.name.toUpperCase();
                 // }

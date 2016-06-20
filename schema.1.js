@@ -2,10 +2,8 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLBoolean,
     GraphQLSchema,
-    GraphQLList,
-    GraphQLNonNull
+    GraphQLList
 } from 'graphql';
 
 import Db from './db';
@@ -83,14 +81,14 @@ const Query = new GraphQLObjectType({
         return {
             people: {
                 type: new GraphQLList(Person),
-                resolve(root, args) {
+                resolve() {
                     /*******/
                     return Db.models.person.findAll();
                 }
             },
             posts: {
                 type: new GraphQLList(Post),
-                resolve(root, args) {
+                resolve() {
                     /*******/
                     return Db.models.post.findAll();
                 }

@@ -2,15 +2,12 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLBoolean,
     GraphQLSchema,
     GraphQLList,
     GraphQLNonNull
 } from 'graphql';
 
 import Db from './db';
-
-let auth = false;
 
 const Post = new GraphQLObjectType({
     name: 'Post',
@@ -71,7 +68,7 @@ const Person = new GraphQLObjectType({
             },
             posts: {
                 type: new GraphQLList(Post),
-                resolve(person, args) {
+                resolve(person) {
                     /****** */
                     return person.getPosts();
                 }
