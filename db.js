@@ -52,9 +52,9 @@ async function createPerson() {
         email: Faker.internet.email()
     });
 
-    _.times(_.random(1,8), (i) => {
+    _.times(_.random(1, 8), (i) => {
         person.createPost({
-            title: `Post ${i+1} by ${person.first_name} ${person.last_name}`,
+            title: `Post ${i + 1} by ${person.first_name} ${person.last_name}`,
             content: Faker.lorem.paragraphs(3)
         });
     });
